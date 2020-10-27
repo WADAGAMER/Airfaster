@@ -23,7 +23,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-const hello=()=><Text>Hello world</Text>;
+const hello=()=>(<Text>Hello world</Text>);
 
 const App: () => React$Node = () => {
   return (
