@@ -8,7 +8,7 @@
 
 import React,{Component} from 'react';
 import { StyleSheet, View} from 'react-native';
-
+import Viewer from './components/view'
 
 
 
@@ -16,6 +16,7 @@ class App extends Component {
  render(){
    return(
      <View style={styles.container}>
+      <Viewer/>
       <View style={styles.subcontainer} />
      </View>
    )
