@@ -17,20 +17,38 @@ class App extends Component {
     super(props);
     this.state={
       counter:0,
+      flag:false,
     };
+    console.log('constructor');
     this.HandleUp= this.HandleUp.bind(this);
     this.HandleDown= this.HandleDown.bind(this);
+    //this.HandleDelete= this.HandleDelete.bind(this);
+  }
+  componentWillMount(){
+    console.log('componentWillMount');  
+  }
+  componentDidMount(){
+    //sirve para hacer peticiones asincronas
+    //puede afectar el performance vuelve a correr el render
+    console.log('componentDidMount');
   }
   HandleUp(){
     const {counter:ct}= this.state;
-    this.setState({counter:ct+1})
+    this.setState({counter:ct+1});
   }
   HandleDown(){
     const {counter:ct}= this.state;
-    this.setState({counter:ct-1})
+    this.setState({counter:ct-1});
   }
+  /*
+  HandleDelete(){    
+    this.setState({flag:true});
+  }
+  */
   render(){
    const{counter}=this.state; 
+   console.log('render');
+   //if(flag) return null;
    return(
      <View style={styles.container}>
       <View style={styles.subcontainer}>
@@ -39,10 +57,10 @@ class App extends Component {
           <Text style={styles.contadortxt}>{counter}</Text>
         </View>
         <CustomButton label="+" action={this.HandleUp}/>
-      </View>      
+      </View>          
      </View>
    )
- }
+  }
 };
 
 const styles = StyleSheet.create({
