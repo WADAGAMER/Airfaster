@@ -8,7 +8,7 @@
 
 import React,{Component} from 'react';
 import { StyleSheet, View,TouchableOpacity,Text} from 'react-native';
-
+import CustomButton from './components/view/button';
 
 
 
@@ -34,15 +34,11 @@ class App extends Component {
    return(
      <View style={styles.container}>
       <View style={styles.subcontainer}>
-        <TouchableOpacity style={styles.btn} onPress={this.HandleDown}>
-          <Text style={styles.btntext}>-</Text>
-        </TouchableOpacity>
+        <CustomButton label="-" action={this.HandleDown}/>
         <View style={styles.contador}>
           <Text style={styles.contadortxt}>{counter}</Text>
         </View>
-        <TouchableOpacity style={styles.btn} onPress={this.HandleUp}>
-          <Text style={styles.btntext}>+</Text>
-        </TouchableOpacity>
+        <CustomButton label="+" action={this.HandleUp}/>
       </View>      
      </View>
    )
