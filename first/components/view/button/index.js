@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {Text,TouchableOpacity,StyleSheet}from 'react-native';
-class Button extends Component{
+import PropTypes from 'prop-types';
+class Button extends Component{   
     render(){
         const {label,action}=this.props;
         return(
@@ -9,6 +10,10 @@ class Button extends Component{
             </TouchableOpacity>
         );
     }
+}
+Button.propTypes ={
+    label:PropTypes.string.isRequired,
+    action:PropTypes.func,
 }
 const styles = StyleSheet.create({
     btn:{
