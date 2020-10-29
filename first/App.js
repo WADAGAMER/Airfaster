@@ -6,13 +6,13 @@
  * @flow strict-local
  */
 
-import React,{Component} from 'react';
+import React,{Component,PureComponent} from 'react';
 import { StyleSheet, View,TouchableOpacity,Text} from 'react-native';
 import CustomButton from './components/view/button';
 
 
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props){
     super(props);
     this.state={
@@ -22,6 +22,7 @@ class App extends Component {
     console.log('constructor');
     this.HandleUp= this.HandleUp.bind(this);
     this.HandleDown= this.HandleDown.bind(this);
+    this.HandleReset= this.HandleReset.bind(this);
     //this.HandleDelete= this.HandleDelete.bind(this);
   }
   componentWillMount(){
@@ -32,6 +33,13 @@ class App extends Component {
     //puede afectar el performance vuelve a correr el render
     console.log('componentDidMount');
   }
+  /*
+  shouldComponentUpdate(nextProps,nextState){
+    const {counter} =this.state;
+    if(nextState.counter===counter) return false;
+    return true;
+  }
+  */
   HandleUp(){
     const {counter:ct}= this.state;
     this.setState({counter:ct+1});
@@ -39,6 +47,9 @@ class App extends Component {
   HandleDown(){
     const {counter:ct}= this.state;
     this.setState({counter:ct-1});
+  }
+  HandleReset(){   
+    this.setState({counter:0});
   }
   /*
   HandleDelete(){    
@@ -57,7 +68,12 @@ class App extends Component {
           <Text style={styles.contadortxt}>{counter}</Text>
         </View>
         <CustomButton label="+" action={this.HandleUp}/>
-      </View>          
+      </View>
+      <View style={styles.subcontainerreset}>
+        <TouchableOpacity style={styles.btnr} onPress={this.HandleReset}>
+            <Text style={styles.btntext}>RESET</Text>
+        </TouchableOpacity>
+      </View>         
      </View>
    )
   }
@@ -74,13 +90,29 @@ const styles = StyleSheet.create({
     width:'100%',
     paddingHorizontal:10,
     flexDirection:'row',    
-  }, 
+  },
+  subcontainerreset:{
+    height:50,
+    width:'100%',
+    paddingHorizontal:10,
+    flexDirection:'row',
+    justifyContent:'center', 
+    alignItems:'center',
+    marginTop:20,   
+  },  
   btn:{
     width:50,
     height:50,
     justifyContent:'center',
     alignItems:'center',
     backgroundColor:'red',
+  },
+  btnr:{
+    height:50,
+    width:'80%',
+    backgroundColor:'red',
+    justifyContent:'center',
+    alignItems:'center',
   },
   btntext:{
     fontSize:35,
