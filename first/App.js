@@ -9,37 +9,25 @@
 import React,{Component,PureComponent} from 'react';
 import { StyleSheet, View,TouchableOpacity,Text} from 'react-native';
 import CustomButton from './components/view/button';
+import ActionButton from './components/view/actionbuttons';
 
 
 
-class App extends PureComponent {
+class App extends Component {
   constructor(props){
     super(props);
     this.state={
       counter:0,
       flag:false,
     };
-    console.log('constructor');
+    
     this.HandleUp= this.HandleUp.bind(this);
     this.HandleDown= this.HandleDown.bind(this);
     this.HandleReset= this.HandleReset.bind(this);
-    //this.HandleDelete= this.HandleDelete.bind(this);
+    this.Handle10= this.Handle10.bind(this);
+    
   }
-  componentWillMount(){
-    console.log('componentWillMount');  
-  }
-  componentDidMount(){
-    //sirve para hacer peticiones asincronas
-    //puede afectar el performance vuelve a correr el render
-    console.log('componentDidMount');
-  }
-  /*
-  shouldComponentUpdate(nextProps,nextState){
-    const {counter} =this.state;
-    if(nextState.counter===counter) return false;
-    return true;
-  }
-  */
+  
   HandleUp(){
     const {counter:ct}= this.state;
     this.setState({counter:ct+1});
@@ -51,15 +39,12 @@ class App extends PureComponent {
   HandleReset(){   
     this.setState({counter:0});
   }
-  /*
-  HandleDelete(){    
-    this.setState({flag:true});
-  }
-  */
+  Handle10(){
+    const {counter:ct}= this.state;
+    this.setState({counter:ct+10});
+  } 
   render(){
-   const{counter}=this.state; 
-   console.log('render');
-   //if(flag) return null;
+   const{counter}=this.state;  
    return(
      <View style={styles.container}>
       <View style={styles.subcontainer}>
@@ -70,9 +55,7 @@ class App extends PureComponent {
         <CustomButton label="+" action={this.HandleUp}/>
       </View>
       <View style={styles.subcontainerreset}>
-        <TouchableOpacity style={styles.btnr} onPress={this.HandleReset}>
-            <Text style={styles.btntext}>RESET</Text>
-        </TouchableOpacity>
+        <ActionButton reset={this.HandleReset} plus={this.Handle10}/>
       </View>         
      </View>
    )
