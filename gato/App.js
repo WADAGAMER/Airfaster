@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-
+//inicio proyecto mas serio
 import React from 'react';
 import {
   SafeAreaView,
