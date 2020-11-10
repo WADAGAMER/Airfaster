@@ -24,6 +24,18 @@ app.set('views',path.join(__dirname,'views'));
 app.use(morgan('dev'));
 app.use(cookieparser());
 app.use(bodyparser.urlencoded({extended: false}));
+app.use(session({
+    secret:'tutorialexpress',
+    resave:false,
+    saveUninitialized:false
+}));
+app.use(passport.initialize);
+app.use(passport.session());
+app.use(flash());
+
+//rutas
+require();
+//ruta estatica
 
 
 app.listen(app.get('port'),() =>{
