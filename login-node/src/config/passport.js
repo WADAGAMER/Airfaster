@@ -54,7 +54,7 @@ module.exports = function (passport) {
     User.findOne({'local.email': email}, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false, req.flash('loginMessage', 'No User found'))
+        return done(null, false, req.flash('loginMessage', 'No User found'));
       }
       if (!user.validPassword(password)) {
         return done(null, false, req.flash('loginMessage', 'Wrong. password'));
@@ -62,4 +62,4 @@ module.exports = function (passport) {
       return done(null, user);
     });
   }));
-}
+};
